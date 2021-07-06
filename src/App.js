@@ -86,19 +86,14 @@ class App extends React.Component {
             {this.state.mapDetalis &&
               <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityInfo.lat},${this.state.cityInfo.lon}&zoom=15`} alt='' />
             }
-            {this.state.WeatherInformation.map((ele) => {
-              return (
-                <>
+            
                   <Card.Text>
 
-                    {ele.date}
+                    {this.state.WeatherInformation.valid_date}
                   </Card.Text>
                   <Card.Text>
-                    {ele.description}
+                    {this.state.WeatherInformation.high_temp}
                   </Card.Text>
-                </>
-              )
-            })}
 
           </Card.Body>
         </Card>
