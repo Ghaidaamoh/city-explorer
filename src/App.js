@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
+import Movies from "./component/Movies";
 
 class App extends React.Component {
 
@@ -12,7 +13,9 @@ class App extends React.Component {
       WeatherInformation: [],
       showWeather: false,
       searchData: '',
-      mapDetalis: false
+      mapDetalis: false,
+      movieInformation:[]
+      
     }
   }
 
@@ -39,6 +42,7 @@ class App extends React.Component {
     })
     // This for weather information 
     this.renderWeather();
+    this.renderMovie();
   }
 
 
@@ -57,7 +61,15 @@ class App extends React.Component {
 
   }
 
+  renderMovie = async () => {
+    let movieUrl = `http://api.themoviedb.org/3/search/movie?api_key=${this.state.searchData}`;
 
+    let movieData = await axios.get(movieUrl)
+    await this.setState({
+      movieInformation: movieData.data,
+    })
+
+  }
   render() {
     return (
       <div style={{ display: "inline-block", margin: "25px" }}>
@@ -72,7 +84,7 @@ class App extends React.Component {
         {this.state.mapDetalis && 
         <img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityInfo.lat},${this.state.cityInfo.lon}&zoom=15`} />
         }       */}
-
+      
         <Card style={{ width: '18rem' }}>
 
           <Card.Body>
@@ -86,18 +98,21 @@ class App extends React.Component {
             {this.state.mapDetalis &&
               <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityInfo.lat},${this.state.cityInfo.lon}&zoom=15`} alt='' />
             }
-            
-                  <Card.Text>
 
-                    {this.state.WeatherInformation.valid_date}
-                  </Card.Text>
-                  <Card.Text>
-                    {this.state.WeatherInformation.high_temp}
-                  </Card.Text>
+            <Card.Text>
 
+              {this.state.WeatherInformation.valid_date}
+            </Card.Text>
+            <Card.Text>
+              {this.state.WeatherInformation.high_temp}
+            </Card.Text>
           </Card.Body>
         </Card>
+        <>
+        <Movies movies= {this.state.movieInformation}/>
+        </>
       </div>
+
     )
   }
 }
