@@ -62,9 +62,10 @@ class App extends React.Component {
   }
 
   renderMovie = async () => {
-    let movieUrl = `http://api.themoviedb.org/3/search/movie?api_key=${this.state.searchData}`;
-
+    const city = this.state.searchData.charAt(0).toUpperCase() + this.state.searchData.slice(1);
+    let movieUrl = `http://localhost:3005/movies?cityName=${city}`;
     let movieData = await axios.get(movieUrl)
+    console.log(movieData);
     await this.setState({
       movieInformation: movieData.data,
     })
