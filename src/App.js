@@ -14,8 +14,8 @@ class App extends React.Component {
       showWeather: false,
       searchData: '',
       mapDetalis: false,
-      movieInformation:[]
-      
+      movieInformation: []
+
     }
   }
 
@@ -49,7 +49,7 @@ class App extends React.Component {
   renderWeather = async () => {
     const city = this.state.searchData.charAt(0).toUpperCase() + this.state.searchData.slice(1);
 
-    let weatherUrl = `https://class07301.herokuapp.com/getCityInfo?cityName=${city}&format=json`;
+    let weatherUrl = `http://localhost:3005/getCityInfo?cityName=${city}&format=json`;
 
     let weatherData = await axios.get(weatherUrl)
     await this.setState({
@@ -63,7 +63,7 @@ class App extends React.Component {
 
   renderMovie = async () => {
     const city = this.state.searchData.charAt(0).toUpperCase() + this.state.searchData.slice(1);
-    let movieUrl = `https://class07301.herokuapp.com/movies?cityName=${city}`;
+    let movieUrl = `http://localhost:3005/movies?cityName=${city}`;
     let movieData = await axios.get(movieUrl)
     console.log(movieData);
     await this.setState({
@@ -85,7 +85,7 @@ class App extends React.Component {
         {this.state.mapDetalis && 
         <img alt='' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityInfo.lat},${this.state.cityInfo.lon}&zoom=15`} />
         }       */}
-      
+
         <Card style={{ width: '18rem' }}>
 
           <Card.Body>
@@ -103,8 +103,8 @@ class App extends React.Component {
           </Card.Body>
         </Card>
         <>
-        <Weather weathers= {this.state.WeatherInformation}/>
-        <Movies movies= {this.state.movieInformation}/>
+          <Weather weathers={this.state.WeatherInformation} />
+          <Movies movies={this.state.movieInformation} />
         </>
       </div>
 
