@@ -93,7 +93,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 https://my.locationiq.com/dashboard
 
 
-Name of feature: ________class06________________________
+Name of feature: ________class09________________________
 
 Estimate of time needed to complete: __3 hours ___
 
