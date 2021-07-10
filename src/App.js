@@ -49,7 +49,7 @@ class App extends React.Component {
   renderWeather = async () => {
     const city = this.state.searchData.charAt(0).toUpperCase() + this.state.searchData.slice(1);
 
-    let weatherUrl = `http://localhost:3005/getCityInfo?cityName=${city}&format=json`;
+    let weatherUrl = `https://class07301.herokuapp.com/getCityInfo?cityName=${city}&format=json`;
 
     let weatherData = await axios.get(weatherUrl)
     await this.setState({
@@ -63,7 +63,7 @@ class App extends React.Component {
 
   renderMovie = async () => {
     const city = this.state.searchData.charAt(0).toUpperCase() + this.state.searchData.slice(1);
-    let movieUrl = `http://localhost:3005/movies?cityName=${city}`;
+    let movieUrl = `https://class07301.herokuapp.com/movies?cityName=${city}`;
     let movieData = await axios.get(movieUrl)
     console.log(movieData);
     await this.setState({
