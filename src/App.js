@@ -3,7 +3,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Movies from "./component/Movies";
-
+import Weather from "./component/Weather";
 class App extends React.Component {
 
   constructor(props) {
@@ -100,16 +100,10 @@ class App extends React.Component {
               <Card.Img variant="top" src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.cityInfo.lat},${this.state.cityInfo.lon}&zoom=15`} alt='' />
             }
 
-            <Card.Text>
-
-              {this.state.WeatherInformation.valid_date}
-            </Card.Text>
-            <Card.Text>
-              {this.state.WeatherInformation.high_temp}
-            </Card.Text>
           </Card.Body>
         </Card>
         <>
+        <Weather weathers= {this.state.WeatherInformation}/>
         <Movies movies= {this.state.movieInformation}/>
         </>
       </div>
